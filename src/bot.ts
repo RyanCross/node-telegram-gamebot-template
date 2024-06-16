@@ -3,7 +3,12 @@ import TelegramBot from 'node-telegram-bot-api';
 
 dotenv.config()
 
-const BOT_TOKEN : string = process.env.BOT_TOKEN ?? ""
+const BOT_TOKEN : string = (() => {
+  if (process.env.BOT_TOKEN)
+    return process.env.BOT_TOKEN
+  throw new Error("No bot token provided")
+})()
+
 const SPACE_MINER_IDLE_GAME_SHORT_NAME : string = "SpaceMinerIdle"
 const bot = new TelegramBot(BOT_TOKEN, { polling: true } );
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from?.id ?? "", "This bot serves up a space mining idle game! Say /game if you want to play."));
