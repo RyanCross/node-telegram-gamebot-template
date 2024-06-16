@@ -7,7 +7,7 @@
     "start": "npm run lint && npm run build && npm run dev",
     "test": "npm run build && ava",
     "dev": "node ./dist/src/index.js",
-    "bot": "ts-node bot.ts"
+    "bot": "ts-node src/bot.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",
